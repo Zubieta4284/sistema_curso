@@ -10,3 +10,12 @@ class Usuario(AbstractUser):
     rol=models.CharField(max_length=20, choices=ROLES, default='estudiante')
     def __str__(self):
         return f"{self.username} - {self.rol}"
+
+class Estudiante(models.Model):
+    usuario=models.OneToOneField('usuarios.Usuario', on_delete=models.CASCADE)
+    ci=models.CharField(max_length=15, unique=True)
+    celular=models.CharField(max_length=15)
+    
+    def __str__(self):
+        return self.ci
+    
